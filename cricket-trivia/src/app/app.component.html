@@ -1,0 +1,24 @@
+<div class="main-container"
+  fxLayoutAlign="center center">
+  <form [formGroup]="form"
+    (submit)="submit()"
+    (reset)="reset()">
+    <div *ngFor="let question of questionsAndAnswers; index as i">
+      <div class="question">
+        <span>{{i+1}}.</span>
+        <span>{{question.question}}</span>
+      </div>
+      <select formControlName="answers">
+        <option *ngFor="let answer of question.all_answers" [value]="answer">
+          {{answer}}
+        </option>
+      </select>
+    </div>
+    <div fxLayout>
+      <button type="submit">Submit</button>
+      <button type="reset">Clear Values</button>
+    </div>
+  </form>
+  <app-chart [chartData]="chartData"></app-chart>
+
+</div>
