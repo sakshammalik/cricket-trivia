@@ -27,10 +27,10 @@ export class ChartComponent implements OnInit {
         };
     public colors = [
         {
-          backgroundColor: 'rgba(77,83,96,0.2)'
+          backgroundColor: '#111111'
         },
         {
-          backgroundColor: 'rgba(30, 169, 224, 0.8)'
+          backgroundColor: '#111111'
         }
       ];
 

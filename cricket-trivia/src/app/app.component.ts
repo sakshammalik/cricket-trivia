@@ -10,7 +10,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AppComponent implements OnInit {
 
   public readonly questionsAndAnswers = QUESTIONSANDANSWERS;
-  public readonly options = ['a', 'b', 'c', 'd'];
 
   public form: FormGroup;
 
@@ -50,6 +49,10 @@ export class AppComponent implements OnInit {
   }
 
   public submit() {
+    if (Object.keys(this.tempAnswers).length < this.questionsAndAnswers.length) {
+      // console.log('missing');
+      return;
+    }
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
     this.questionsAndAnswers.forEach((question) => {

@@ -1,24 +1,39 @@
-<div class="main-container"
-  fxLayoutAlign="center center">
+<div class="main-container">
+  <div fxLayoutAlign="center center"
+    class="heading">
+    <h1>Cricket Trivia</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
   <form [formGroup]="form"
     (submit)="submit()"
     (reset)="reset()">
-    <div *ngFor="let question of questionsAndAnswers; index as i">
-      <div class="question">
-        <span>{{i+1}}.</span>
-        <span>{{question.question}}</span>
+    <div class="form-group">
+      <div *ngFor="let question of questionsAndAnswers; index as i"
+        class="question-container">
+        <div class="question">
+          <span>{{i+1}}.</span>
+          <span>{{question.question}}</span>
+        </div>
+        <div class="answer-container">
+          <select formControlName="answers"
+            class="custom-select" #inputGroupSelect04>
+            <option selected="selected">Select an answer</option>
+            <option *ngFor="let answer of question.all_answers" [value]="answer">
+              {{answer}}
+            </option>
+          </select>
+        </div>
       </div>
-      <select formControlName="answers">
-        <option *ngFor="let answer of question.all_answers" [value]="answer">
-          {{answer}}
-        </option>
-      </select>
-    </div>
-    <div fxLayout>
-      <button type="submit">Submit</button>
-      <button type="reset">Clear Values</button>
+      <div fxLayout>
+        <button type="submit" class="col-md-6 btn btn-light">Submit</button>
+        <button type="reset" class="col-md-6 btn btn-light">Clear Values</button>
+      </div>
     </div>
   </form>
-  <app-chart [chartData]="chartData"></app-chart>
-
+  </div>
+  <div class="col-md-6">
+    <app-chart [chartData]="chartData"></app-chart>
+  </div>
+</div>
 </div>
