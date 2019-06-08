@@ -4,7 +4,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart';
@@ -20,8 +19,7 @@ import { ChartComponent } from './chart';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule,
-    MatMenuModule
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
