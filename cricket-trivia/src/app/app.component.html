@@ -15,14 +15,17 @@
           <span>{{i+1}}.</span>
           <span>{{question.question}}</span>
         </div>
-        <div class="answer-container">
+        <div class="answer-container"
+          [ngClass]="{'error': isQuestionUnanswered(question.id)}">
           <select formControlName="answers"
             class="custom-select" #inputGroupSelect04>
-            <option selected="selected">Select an answer</option>
+            <option selected disabled hidden>Select an answer</option>
             <option *ngFor="let answer of question.all_answers" [value]="answer">
               {{answer}}
             </option>
           </select>
+          <span *ngIf="isQuestionUnanswered(question.id)"
+            class="required">*required</span>
         </div>
       </div>
       <div fxLayout>

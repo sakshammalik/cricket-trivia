@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   public form: FormGroup;
 
   public tempAnswers = {};
+  public unAnswered = [];
 
   public correctAnswers = 0;
   public incorrectAnswers = 0;
@@ -49,12 +50,18 @@ export class AppComponent implements OnInit {
   }
 
   public submit() {
-    if (Object.keys(this.tempAnswers).length < this.questionsAndAnswers.length) {
-      // console.log('missing');
-      return;
-    }
+    this.unAnswered = [];
     this.correctAnswers = 0;
     this.incorrectAnswers = 0;
+    if (Object.keys(this.tempAnswers).length < this.questionsAndAnswers.length) {
+      this.questionsAndAnswers.forEach((question) => {
+        if (!this.tempAnswers[question.id]) {
+          this.unAnswered.push(question.id);
+        }
+      });
+      console.log(this.unAnswered);
+      return;
+    }
     this.questionsAndAnswers.forEach((question) => {
       if (this.tempAnswers[question.id]) {
         if (this.tempAnswers[question.id] === question.correct_answer) {
@@ -64,6 +71,26 @@ export class AppComponent implements OnInit {
         }
       }
     });
+    this.setChartData();
+  }
+
+  public reset() {
+    this.tempAnswers = {};
+    this.correctAnswers = 0;
+    this.incorrectAnswers = 0;
+    this.unAnswered = [];
+    this.setChartData();
+    this.form.reset();
+  }
+
+  public isQuestionUnanswered(id) {
+    if (this.unAnswered.find((value) => value === id)) {
+      return true;
+    }
+    return false;
+  }
+
+  public setChartData() {
     this.chartData = [
       {
         label: 'Correct',
@@ -74,13 +101,6 @@ export class AppComponent implements OnInit {
         data: [this.incorrectAnswers]
       }
     ];
-  }
-
-  public reset() {
-    this.tempAnswers = {};
-    this.correctAnswers = 0;
-    this.incorrectAnswers = 0;
-    this.form.reset();
   }
 
   private createForm() {
