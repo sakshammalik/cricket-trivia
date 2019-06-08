@@ -1,1 +1,3 @@
-# cricket-trivia
+# CricketTrivia
+
+Check you cricket trivia easily.
